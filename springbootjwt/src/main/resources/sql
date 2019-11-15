@@ -1,0 +1,39 @@
+insert into users(user_id, username, password, enabled)
+values('1', 'sean', '$2a$10$kOb7reLfsQGgmSm4c5utFuz3TytdKJZIgQZHvtxrd/LK4K2LPkpT2', true);
+
+create table oauth_client_details (
+  client_id VARCHAR(256) PRIMARY KEY,
+  resource_ids VARCHAR(256),
+  client_secret VARCHAR(256),
+  scope VARCHAR(256),
+  authorized_grant_types VARCHAR(256),
+  web_server_redirect_uri VARCHAR(256),
+  authorities VARCHAR(256),
+  access_token_validity INTEGER,
+  refresh_token_validity INTEGER,
+  additional_information VARCHAR(4096),
+  autoapprove VARCHAR(256)
+);
+
+create table oauth_access_token (
+  token_id VARCHAR(256),
+  token BLOB,
+  authentication_id VARCHAR(256) PRIMARY KEY,
+  user_name VARCHAR(256),
+  client_id VARCHAR(256),
+  authentication BLOB,
+  refresh_token VARCHAR(256)
+);
+
+create table oauth_refresh_token (
+  token_id VARCHAR(256),
+  token BLOB,
+  authentication BLOB
+);
+
+INSERT into oauth_client_details(client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove)
+values('sean', '', '$2a$10$y9pYNuYeKgL87kQ6O.N59OJhOmokm72.HeJWARi7IXzx4YgXyfiUW', 'read,write', 'password,refresh_token', '', 'ROLE_CLIENT,ROLE_TRUSTED_CLIENT', 3600, 2592000, '', '');
+
+INSERT into oauth_client_details(client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove)
+values('melissa', '', '$2a$10$y9pYNuYeKgL87kQ6O.N59OJhOmokm72.HeJWARi7IXzx4YgXyfiUW', 'read,write', 'password,refresh_token', '', 'ROLE_CLIENT,ROLE_TRUSTED_CLIENT', 3600, 2592000, '', '');
+
